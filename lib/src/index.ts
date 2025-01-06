@@ -165,6 +165,5 @@ export const e2pdf = async (url: string, config?: E2PdfOptions) => {
   await crawler.run([url]);
 };
 
-if (process.argv.length > 2) {
-  e2pdf(process.argv[2]);
-}
+/** v8-ignore */
+if (process.argv.length > 2) e2pdf(process.argv[2]);
