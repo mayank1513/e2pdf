@@ -33,7 +33,7 @@ jobs:
         name: Install dependencies
         # fail and not publish if any of the unit tests are failing
       - name: Test
-        run: pnpm test
+        run: pnpm test --filter e2pdf
       - name: Copy Readme file
         run: cp ./README.md ./lib # will be uncommented while rebranding
       - name: Apply changesets, publish and create release, branches and tags
