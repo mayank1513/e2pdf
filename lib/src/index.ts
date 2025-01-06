@@ -164,6 +164,3 @@ export const e2pdf = async (url: string, config?: E2PdfOptions) => {
   // Add first URL to the queue and start the crawl.
   await crawler.run([url]);
 };
-
-/** v8-ignore */
-if (process.argv.length > 2) e2pdf(process.argv[2]);

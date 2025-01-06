@@ -15,8 +15,11 @@
   "files": [
     "dist/**"
   ],
+  "bin": {
+    "e2pdf": "./dist/cli.mjs"
+  },
   "scripts": {
-    "build": "tsup && tsc -p tsconfig-build.json",
+    "build": "tsup && tsc -p tsconfig-build.json && chmod +x ./dist/cli.mjs",
     "clean": "rm -rf dist",
     "dev": "tsup --watch && tsc -p tsconfig-build.json -w",
     "typecheck": "tsc --noEmit",
