@@ -35,7 +35,7 @@ const [oldMajor, oldMinor] = LATEST_VERSION.split(".");
 const isPatch = newMajor === oldMajor && newMinor === oldMinor;
 const releaseBranch = `release-${newMajor}.${newMinor}`;
 
-if (isPatch) {
+if (isPatch && !LATEST_VERSION.endsWith("-1")) {
   // update release branch
   execSync(
     `git checkout ${releaseBranch} && git merge ${BRANCH} && git push origin ${releaseBranch}`,
