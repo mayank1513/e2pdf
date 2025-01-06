@@ -1,10 +1,18 @@
 import fs from "node:fs";
 import path from "node:path";
-import { PlaywrightCrawler } from "crawlee";
+import { Configuration, PlaywrightCrawler, PlaywrightCrawlerOptions } from "crawlee";
 
-interface E2PdfOptions {
-  // pdf options
-  pdf: {
+export interface E2PdfOptions {
+  /**
+   * Output directory
+   * @default process.cwd()
+   */
+  out?: string;
+  /**
+   * PDF options
+   * @see https://playwright.dev/docs/api/class-page#page-pdf
+   */
+  pdf?: {
     /**
      * Display header and footer. Defaults to `false`.
      */
@@ -115,22 +123,41 @@ interface E2PdfOptions {
      */
     width?: string | number;
   };
+
+  /**
+   * @see https://crawlee.dev/api/playwright-crawler/class/PlaywrightCrawler
+   */
+  crawlerOptions?: PlaywrightCrawlerOptions;
+
+  /**
+   * @see https://crawlee.dev/api/playwright-crawler/class/PlaywrightCrawler
+   */
+  crawlerConfig?: Configuration;
 }
 
 export const e2pdf = async (url: string, config?: E2PdfOptions) => {
-  const crawler = new PlaywrightCrawler({
-    // Use the requestHandler to process each of the crawled pages.
-    async requestHandler({ request, page, enqueueLinks }) {
-      const pdf = await page.pdf(config?.pdf);
+  const crawler = new PlaywrightCrawler(
+    {
+      ...config?.crawlerOptions,
+      // Use the requestHandler to process each of the crawled pages.
+      async requestHandler(context) {
+        const pdf = await context.page.pdf(config?.pdf);
 
-      const filePath = (request.loadedUrl.split("://")[1] || "home") + ".pdf";
-      const dir = path.dirname(filePath);
-      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(filePath, pdf);
+        const filePath =
+          (config?.out ? config.out + path.sep : "") +
+          (context.request.loadedUrl.split("://")[1] || "home") +
+          ".pdf";
+        const dir = path.dirname(filePath);
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        fs.writeFileSync(filePath, pdf);
 
-      await enqueueLinks();
+        if (config?.crawlerOptions?.requestHandler)
+          await config.crawlerOptions.requestHandler(context);
+        else await context.enqueueLinks();
+      },
     },
-  });
+    config?.crawlerConfig,
+  );
 
   // Add first URL to the queue and start the crawl.
   await crawler.run([url]);
