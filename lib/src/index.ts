@@ -143,10 +143,12 @@ export const e2pdf = async (url: string, config?: E2PdfOptions) => {
       async requestHandler(context) {
         const pdf = await context.page.pdf(config?.pdf);
 
-        const filePath =
+        const filePath = (
           (config?.out ? config.out + path.sep : "") +
-          (context.request.loadedUrl.split("://")[1] || "home") +
-          ".pdf";
+          context.request.loadedUrl.split("://")[1] +
+          ".pdf"
+        ).replace("/.pdf", "/home.pdf");
+
         const dir = path.dirname(filePath);
         if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
         fs.writeFileSync(filePath, pdf);
