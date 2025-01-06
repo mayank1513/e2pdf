@@ -27,63 +27,24 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@testing-library/react": "^16.1.0",
     "@types/node": "^22.10.5",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
-    "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "^2.1.8",
     "esbuild-plugin-rdi": "^0.0.0",
-    "esbuild-plugin-react18": "0.2.6",
-    "esbuild-plugin-react18-css": "^0.0.4",
     "jsdom": "^25.0.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^2.1.8"
   },
   "dependencies": {
-    "r18gs": "^3.0.1"
-  },
-  "peerDependencies": {
-    "@types/react": ">=16.8",
-    "next": ">=10",
-    "react": ">=16.8"
-  },
-  "peerDependenciesMeta": {
-    "next": {
-      "optional": true
-    }
+    "crawlee": "^3.12.1",
+    "playwright": "^1.49.1"
   },
   "funding": [
     {
       "type": "github",
       "url": "https://github.com/sponsors/mayank1513"
-    },
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/mayank1513"
     }
   ],
-  "keywords": [
-    "React",
-    "React Loaders",
-    "React 18",
-    "React 19",
-    "Next.js",
-    "Next.js 14",
-    "Next.js 15",
-    "React server components",
-    "Customizable",
-    "Cutting-edge",
-    "Compatibility",
-    "Frontend development",
-    "UI components",
-    "Web development",
-    "Progressive",
-    "Modern",
-    "Seamless integration"
-  ]
+  "keywords": []
 }

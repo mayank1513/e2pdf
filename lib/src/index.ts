@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { chromium } from "playwright";
+import { PlaywrightCrawler } from "crawlee";
 
 interface E2PdfOptions {
   // pdf options
@@ -118,26 +118,22 @@ interface E2PdfOptions {
 }
 
 export const e2pdf = async (url: string, config?: E2PdfOptions) => {
-  // Setup
-  const browser = await chromium.launch();
-  const context = await browser.newContext();
-  const page = await context.newPage();
+  const crawler = new PlaywrightCrawler({
+    // Use the requestHandler to process each of the crawled pages.
+    async requestHandler({ request, page, enqueueLinks }) {
+      const pdf = await page.pdf(config?.pdf);
 
-  const generatePdfAndCrawl = async (url: string) => {
-    // generate pdf
-    await page.goto(url);
-    const pdf = await page.pdf(config?.pdf);
-    const filePath = url.split("://")[1] + ".pdf";
-    const dir = path.dirname(filePath);
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(filePath, pdf);
-  };
+      const filePath = (request.loadedUrl.split("://")[1] || "home") + ".pdf";
+      const dir = path.dirname(filePath);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(filePath, pdf);
 
-  await generatePdfAndCrawl(url);
+      await enqueueLinks();
+    },
+  });
 
-  // Teardown
-  await context.close();
-  await browser.close();
+  // Add first URL to the queue and start the crawl.
+  await crawler.run([url]);
 };
 
 if (process.argv.length > 2) {
