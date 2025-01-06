@@ -12,7 +12,7 @@ try {
 try {
   execSync("pnpm changeset version");
   execSync(
-    `git add . && git commit -m "Apply changesets and update CHANGELOG" && git push origin ${BRANCH}`,
+    `git add . && git commit -m "Apply changesets and update CHANGELOG [skip ci]" && git push origin ${BRANCH}`,
   );
 } catch {
   // no changesets to be applied
