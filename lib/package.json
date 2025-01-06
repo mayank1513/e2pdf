@@ -3,7 +3,7 @@
   "author": "Mayank Kumar Chaudhari <https://mayank-chaudhari.vercel.app>",
   "private": false,
   "version": "0.0.0",
-  "description": "",
+  "description": "A lightweight, highly efficient, and customizable Node.js library for crawling websites and converting pages into compact, AI-optimized PDFs. Ideal for data archiving, offline analysis, and feeding content to AI tools. Delivers fast performance and allows flexibility in output structure and PDF generation settings.",
   "license": "MPL-2.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -45,5 +45,22 @@
       "url": "https://github.com/sponsors/mayank1513"
     }
   ],
-  "keywords": []
+  "keywords": [
+    "website-crawler",
+    "pdf-generator",
+    "AI-ready",
+    "data-archiving",
+    "offline-analysis",
+    "customizable",
+    "performance",
+    "tiny-library",
+    "fast-crawling",
+    "nodejs",
+    "pdf-conversion",
+    "content-scraping",
+    "web-to-pdf",
+    "AI-tools",
+    "lightweight",
+    "mayank1513"
+  ]
 }
