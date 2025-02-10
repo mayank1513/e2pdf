@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm i -g pnpm && pnpm i && pnpx playwright install --with-deps
+      - run: npm i -g pnpm && pnpm i && pnpm exec playwright install
         name: Install dependencies
       - name: Run unit tests
         run: pnpm test --filter e2pdf
