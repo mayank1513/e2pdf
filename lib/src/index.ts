@@ -9,6 +9,10 @@ export interface E2PdfOptions {
    */
   out?: string;
   /**
+   * callback function to run after each pdf print
+   */
+  afterPrint?: (pdf: Buffer<ArrayBufferLike>, url: string, filePath: string) => void;
+  /**
    * PDF options
    * @see https://playwright.dev/docs/api/class-page#page-pdf
    */
@@ -152,6 +156,8 @@ export const e2pdf = async (url: string, config?: E2PdfOptions) => {
         const dir = path.dirname(filePath);
         if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
         fs.writeFileSync(filePath, pdf);
+
+        config?.afterPrint?.(pdf, context.request.loadedUrl, filePath);
 
         if (config?.crawlerOptions?.requestHandler)
           await config.crawlerOptions.requestHandler(context);
