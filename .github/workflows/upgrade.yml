@@ -24,11 +24,11 @@ jobs:
           git fetch
           git checkout main
           git pull
-      - run: npm i -g pnpm && pnpm i --no-frozen-lockfile && pnpx playwright install --with-deps
+      - run: npm i -g pnpm && pnpm i --no-frozen-lockfile
         name: Install dependencies
       - run: git stash --include-untracked
         name: clean up working directory
-      - run: pnpx @turbo/codemod update . && pnpm update --latest -r
+      - run: pnpx @turbo/codemod update . && pnpm update --latest -r && pnpx playwright install --with-deps
         name: Update dependencies
       - run: pnpm build --filter @example/nextjs
         name: Build all apps to make sure it is not broken due to dependency upgrades
