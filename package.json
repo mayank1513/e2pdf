@@ -15,9 +15,9 @@
   "devDependencies": {
     "@changesets/cli": "^2.27.12",
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^22.13.1",
-    "prettier": "^3.5.0",
-    "turbo": "^2.4.1"
+    "@types/node": "^22.13.4",
+    "prettier": "^3.5.1",
+    "turbo": "^2.4.2"
   },
   "packageManager": "pnpm@9.15.5",
   "engines": {
