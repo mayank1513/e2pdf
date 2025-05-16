@@ -24,9 +24,9 @@
     "@types/cors": "^2.8.18",
     "@types/express": "^5.0.1",
     "@types/morgan": "^1.9.9",
-    "@types/node": "^22.15.17",
+    "@types/node": "^22.15.18",
     "@types/supertest": "^6.0.3",
-    "supertest": "^7.1.0",
+    "supertest": "^7.1.1",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3"
   }
