@@ -30,17 +30,17 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^24.0.1",
-    "@vitest/coverage-v8": "^3.2.3",
+    "@types/node": "^24.0.3",
+    "@vitest/coverage-v8": "^3.2.4",
     "esbuild-plugin-rdi": "^0.0.0",
     "tsup": "^8.5.0",
     "typescript": "^5.8.3",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.2.3"
+    "vitest": "^3.2.4"
   },
   "dependencies": {
-    "crawlee": "^3.13.7",
-    "playwright": "^1.53.0"
+    "crawlee": "^3.13.8",
+    "playwright": "^1.53.1"
   },
   "funding": [
     {
